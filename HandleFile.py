@@ -24,7 +24,6 @@ class handleFile :
             if f_append.tell() == 0:
                 write.writeheader()
             write.writerows(new_value)  # <===
-                
 
     def append_info_user (self, new_value):
         # check this new value is dict or list of dict
