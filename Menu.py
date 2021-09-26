@@ -6,6 +6,7 @@ import buy
 import search
 
 logging.basicConfig(level=logging.INFO,filename='logs.log',filemode='a',format=" %(asctime)s — %(name)s — %(levelname)s — %(message)s \n")
+
 def menu():
     option = 0
     while option != 3:
