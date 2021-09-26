@@ -1,5 +1,6 @@
 import HandleFile
 import csv
+from hashlib import sha256
 class customer:
     idfc = HandleFile.handleFile('user.csv')
     def __init__(self,role,username,password):
@@ -13,7 +14,7 @@ class customer:
             repeat_password = input("Repeat your password :")
             while repeat_password != password:
                 repeat_password = input("Input is incorrect\nRepeat your password again :")
-            return repeat_password  
+            return sha256(str(repeat_password).encode()).hexdigest()    
         else:
             print("invalid password")
     def validation_name(self,name):
@@ -48,12 +49,12 @@ class Manager(customer):
         with open('user.csv','r') as file:
             reader = csv.DictReader(file)
             for i in reader:
-                if i['role'] == 'customer': #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                if i['role'] == 'customer': 
                     print(i['username'])
 
 
 # a = customer("customer","09191049849","091910aaa")
 # a.saving()
-# # a = Manager("09191049849","091910aaa","apadana","2018-2020")
-# # a.saving()
-# a.show()
+
+# a = Manager("manager","09191049849","091910aaa","ofogh","2018-2020")
+# a.saving()
