@@ -37,11 +37,11 @@ class customer:
         
 class Manager(customer):
     idfc = HandleFile.handleFile('user.csv')
-    def __init__(self, role, username, password,store_name,activity_time):
+    def __init__(self, role, username, password,store_name,activity_time,black_list=None):
         super().__init__(role, username, password)
         self.store_name=store_name
         self.activity_time=activity_time #datetime
-
+        self.blacklist = black_list
     def saving (self):
         self.idfc.append_info_user(self.__dict__)
     
@@ -51,10 +51,20 @@ class Manager(customer):
             for i in reader:
                 if i['role'] == 'customer': 
                     print(i['username'])
+                    
+    def BlackList(self):
+        lst=[]
+        with open('user.csv','r') as file:
+            reader = csv.DictReader(file)
+            for i in reader:
+                if self in i['username'] and i['role'] == 'customer':
+                    lst.append(f"{i['username']}")
+                    return lst
 
 
-# a = customer("customer","09191049849","091910aaa")
+# a = Manager("customer","09126853858","091910aaa")
 # a.saving()
 
-# a = Manager("manager","09191049849","091910aaa","ofogh","2018-2020")
+# b= Manager.BlackList("09191049849")
+# a = Manager("manager","09191049849","091910aaa","ofogh","2018-2020",b)
 # a.saving()

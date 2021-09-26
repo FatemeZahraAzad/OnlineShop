@@ -29,13 +29,14 @@ class Buy:
 
     def selection_of_good(**kwargs): #این قسمت برای فاز دوم میباشد
         lst = []
-        with open('goods.csv','r') as file2:
+        with open('goods.csv','r+') as file2:
             reader2 = csv.DictReader(file2)
             for i in reader2:
                 for key, value in kwargs.items():
                     if key in i['product_name'] and int(i['number_of_inventory']) >= int(value) :
-                        # newNumber= int(i['number_of_inventory']) - int(noi)
                         lst.append(f"{key} : {value}")
+                        newNumber= int(i['number_of_inventory']) - int(value)
+                        i['number_of_inventory'] = newNumber
         print(lst)
         return lst
 

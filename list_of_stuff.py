@@ -35,11 +35,11 @@ class products:
                 if self in i['store']:
                     print(i)
 
-    def show_buy(store):
+    def show_buy(self):
             with open('purchase_invoice.csv.csv','r') as file:
                 reader = csv.DictReader(file)
                 for i in reader:
-                    if store in i['store']:
+                    if self in i['store']:
                         print(i)
               
 
