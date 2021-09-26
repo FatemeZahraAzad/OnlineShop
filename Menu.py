@@ -145,4 +145,5 @@ def menu():
         except Exception as e:
             print(e)
             logging.error(ValueError)
+            
 menu()
