@@ -1,10 +1,5 @@
-store,barcode,price,brand,product_name,number_of_inventory,expiration_date
-
-kuroosh,52694531,98000,dark,chokolate,15,2020.11.9
-
-seven,123456789,4500,yumi,candy,9,2020.12.20
-
-Ofogh,497634215,76000,adidas,bag,1,2040.1.13
-
-ofogh,9856214763,50000,panda,shoes,50,2022.7.23
-
+store,barcode,price,brand,product_name,number_of_inventory,expiration_date
+ok,0123456789,10000,mihan,icecream,50,2023-06-12
+ofogh,456398712,60000,kavir,shoes,5,2040-06-09
+ofogh,77896354210,6000,yumi,chokolate,15,2022-01-27
+seven,5656498344,15000,noora,notebook,17,2060-10-10

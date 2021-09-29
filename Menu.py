@@ -1,9 +1,11 @@
+import os
 import csv
 import User
 import list_of_stuff
 import logging
 import buy
 import search
+from hashlib import sha256
 
 logging.basicConfig(level=logging.INFO,filename='logs.log',filemode='a',format=" %(asctime)s — %(name)s — %(levelname)s — %(message)s \n")
 
@@ -23,10 +25,12 @@ def menu():
                         username = input("Enter phone number: ")
                         password = input("Enter Password\n(Your password must be above 8 characters and at least one letter):")
                         store_name = input("Enter store's name: ")
-                        Activity_time = input("Enter the time period of your activity(for example : 2018-2020):")
-                        abject2 = User.Manager(Role,username,password,store_name,Activity_time)
+                        login_time = input("Enter Your Log in time:")
+                        Exit_time = input("Enter Your exit time:")
+                        abject2 = User.Manager(Role,username,password,store_name,login_time,Exit_time)
                         User.Manager.saving(abject2)
                         logging.info(f"{store_name} is regester")
+                        os.system('cls')
                         Registration_of_goods = input("Do you want to register your goods ?!\nEnter yes or no :").lower().strip()
                         if Registration_of_goods == "yes":
                             print(f"welcome sir\nThank you for choosing our application\nPlease enter the requested information")
@@ -42,13 +46,16 @@ def menu():
                                 abject3 = list_of_stuff.products(store,barcode,price,brand,product_name,number_of_inventory,expiration_date)
                                 list_of_stuff.products.saving(abject3)
                                 logging.info(f"{product_name} is regester")
+                                os.system('cls')
                                 Input = input("Do you still want to register a product?\nIf you don't want to enter the word ""no"" : ").lower()
+                            os.system('cls')
                     elif Role == "customer":
                         logging.info(f"New {Role} is regester")
                         username = input("Enter phone number: ")
                         password = input("Enter Password\n(Your password must be above 8 characters and at least one letter):")
                         abject4=User.customer(Role,username,password)
                         User.customer.saving(abject4)
+                        os.system('cls')
                     else:
                         logging.error(ValueError)
                         raise ValueError
@@ -65,11 +72,11 @@ def menu():
                         with open('user.csv','r') as file:
                             filereader = csv.DictReader(file, delimiter=',')
                             for i in filereader:
-                                if username in i['username'] and password in i['password']: # username in file2 and password in file2:
+                                if username in i['username'] and sha256(str(password).encode()).hexdigest() in i['password']: # username in file2 and password in file2:
                                     if i['role'] == 'manager':
                                         logging.info(f"{username} is regester")
                                         choice = 0
-                                        while choice != 3 :
+                                        while choice != 6:
                                             print("1-View store inventory")
                                             print("2-View customer purchase invoice")
                                             print("3-Invoice Search ")
@@ -79,19 +86,25 @@ def menu():
                                             choice = int(input("choose an number: "))
                                             if choice == 1:
                                                 NameStore = input("Enter your store name :").lower()
-                                                abject5=list_of_stuff.products.show_products(NameStore)
-                                                list_of_stuff.products.validation_inventory(abject5)
+                                                list_of_stuff.products.show_products(NameStore)
                                             if choice == 2:
                                                 Name_Store = input("Enter your store name :").lower()
                                                 list_of_stuff.products.show_buy(Name_Store)
                                             if choice == 3:
-                                                type = input("On what basis do you want to search?\n(enter -> customer or date):").lower()
+                                                type = input("Search (for example 09123456789 2021-1-1):").lower()
                                                 search.Search.search_manager(type)
                                             if choice == 4:
                                                 Input2 = "customer"
                                                 User.Manager.show(Input2)
                                             if choice == 5:
-                                                pass
+                                                end = ''
+                                                while end != 'no':
+                                                    user = input("enter her/his number :")
+                                                    User.Manager.BlackList(user)
+                                                    end = input('Would you like to add someone again ?! (yes/no) : ')
+                                            if choice == 6:
+                                                print ('Exiting\n')
+                                                exit(0)
                                     else:
                                         print("you are not manager")
                                         logging.error("Failed log in")
@@ -104,7 +117,7 @@ def menu():
                                 if username in i['username'] and password in i['password']:
                                     logging.info(f"{username} is regester")
                                     choice2 = 0
-                                    while choice2 != 3 :
+                                    while choice2 != 9:
                                         print("1-View your previous invoices") #مشاهده فاکتور قبلی
                                         print("2-Show list of stores") #نمایش لیستی از فروشگاه ها
                                         print("3-Store Search") #جست و جوی فروشگاه
@@ -129,11 +142,10 @@ def menu():
                                             select_of_good = input("Do you want to select a goods ?!\nEnter yes or no :").lower()
                                             if select_of_good == 'yes':
                                                 name = ''
-                                                nummmber = ''
-                                                while name and nummmber != 'done':
-                                                    name,nummmber = input('enter your choise and nomber of its\nfor example ->  candy,5 \notherwise enter done,done ').lower().strip().split(',')
-                                                nop = buy.Buy.selection_of_good(name = nummmber) #!!!!!!! این قسمت برای فاز دوم میباشد
-                                            factore=buy.Buy(username,shop,nop)
+                                                while name != 'done':
+                                                    name = input('enter your choise and nomber of its\nfor example ->  candy,5 \notherwise enter done,done ').lower().strip().split(',')
+                                                    # nop = buy.Buy.selection_of_good(name) #!!!!!!! این قسمت برای فاز دوم میباشد
+                                                    factore=buy.Buy(username,name,shop)
                                             buy.Buy.saving(factore)
                                         if choice2 == 7:
                                             pass
@@ -146,5 +158,5 @@ def menu():
         except Exception as e:
             print(e)
             logging.error(ValueError)
-            
+
 menu()

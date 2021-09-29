@@ -76,3 +76,123 @@
 
  2021-09-26 11:17:25,338 — root — INFO — 09191049849 is regester 
 
+ 2021-09-26 19:42:19,308 — root — INFO — 09191049849 is regester 
+
+ 2021-09-26 19:43:43,184 — root — ERROR — <class 'ValueError'> 
+
+ 2021-09-26 19:45:28,181 — root — INFO — 09191049849 is regester 
+
+ 2021-09-26 19:46:29,955 — root — ERROR — <class 'ValueError'> 
+
+ 2021-09-26 19:56:54,252 — root — INFO — 09191049849 is regester 
+
+ 2021-09-26 19:57:58,065 — root — INFO — 09191049849 is regester 
+
+ 2021-09-27 14:03:43,552 — root — INFO — New manager is regester 
+
+ 2021-09-27 14:04:41,193 — root — INFO — ofogh is regester 
+
+ 2021-09-27 14:06:42,161 — root — ERROR — Failed to register 
+
+ 2021-09-27 16:53:29,652 — root — INFO — New manager is regester 
+
+ 2021-09-27 16:54:33,160 — root — INFO — ofogh is regester 
+
+ 2021-09-27 16:55:33,101 — root — INFO — icecream is regester 
+
+ 2021-09-27 17:00:43,475 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 17:03:52,081 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 19:48:22,023 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 19:50:41,209 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 20:12:42,105 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 20:26:26,123 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 20:26:41,034 — root — ERROR — <class 'ValueError'> 
+
+ 2021-09-27 20:29:13,708 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 20:29:53,330 — root — ERROR — <class 'ValueError'> 
+
+ 2021-09-27 20:30:47,176 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 20:46:11,773 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 20:56:45,632 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 20:58:38,396 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 20:59:00,500 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 21:00:46,998 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 21:01:27,942 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 21:02:58,957 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 21:03:32,610 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 21:07:29,825 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 21:18:51,896 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 21:18:55,943 — root — INFO — 09306474007 is regester 
+
+ 2021-09-27 21:21:35,785 — root — INFO — 09191049849 is regester 
+
+ 2021-09-27 21:21:39,092 — root — ERROR — Failed log in 
+
+ 2021-09-27 21:21:39,093 — root — ERROR — Failed log in 
+
+ 2021-09-27 21:21:39,093 — root — INFO — 09191049849 is regester 
+
+ 2021-09-27 21:21:40,473 — root — ERROR — <class 'ValueError'> 
+
+ 2021-09-27 21:25:15,498 — root — INFO — 09191049849 is regester 
+
+ 2021-09-28 15:54:42,701 — root — INFO — 09191049849 is regester 
+
+ 2021-09-28 15:58:25,875 — root — INFO — 09306474007 is regester 
+
+ 2021-09-28 20:44:42,692 — root — INFO — New customer is regester 
+
+ 2021-09-29 08:20:58,329 — root — INFO — New manager is regester 
+
+ 2021-09-29 08:22:36,583 — root — INFO — kuroosh is regester 
+
+ 2021-09-29 08:26:18,922 — root — INFO — New manager is regester 
+
+ 2021-09-29 08:29:42,266 — root — INFO — New manager is regester 
+
+ 2021-09-29 08:30:34,659 — root — INFO — ok is regester 
+
+ 2021-09-29 08:31:55,017 — root — INFO — icecream is regester 
+
+ 2021-09-29 08:32:46,042 — root — INFO — New manager is regester 
+
+ 2021-09-29 08:33:24,941 — root — INFO — ofogh is regester 
+
+ 2021-09-29 08:35:06,684 — root — INFO — shoes is regester 
+
+ 2021-09-29 08:36:26,433 — root — INFO — chokolate is regester 
+
+ 2021-09-29 08:36:59,330 — root — INFO — New manager is regester 
+
+ 2021-09-29 08:37:46,700 — root — INFO — seven is regester 
+
+ 2021-09-29 08:39:25,656 — root — INFO — notebook is regester 
+
+ 2021-09-29 08:40:43,364 — root — INFO — New customer is regester 
+
+ 2021-09-29 08:42:46,968 — root — INFO — New customer is regester 
+
+ 2021-09-29 08:44:45,729 — root — ERROR — <class 'ValueError'> 
+
+ 2021-09-29 08:44:45,729 — root — ERROR — Failed to register 
+
+ 2021-09-29 08:44:58,708 — root — INFO — New customer is regester 
+

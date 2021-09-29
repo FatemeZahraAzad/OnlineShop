@@ -18,7 +18,7 @@ class customer:
         else:
             print("invalid password")
     def validation_name(self,name):
-        if name.isdigit() and len(name) == 11 :
+        if name.startswith("09") and name.isdigit() and len(name) == 11 :
             with open('user.csv','r') as file:
                 reader = csv.DictReader(file)
                 for i in reader:
@@ -37,10 +37,11 @@ class customer:
         
 class Manager(customer):
     idfc = HandleFile.handleFile('user.csv')
-    def __init__(self, role, username, password,store_name,activity_time,black_list=None):
+    def __init__(self, role, username, password,store_name,Login_time,Exit_time,black_list=None):
         super().__init__(role, username, password)
         self.store_name=store_name
-        self.activity_time=activity_time #datetime
+        self.Login_time=Login_time
+        self.Exit_time = Exit_time
         self.blacklist = black_list
     def saving (self):
         self.idfc.append_info_user(self.__dict__)
@@ -51,20 +52,22 @@ class Manager(customer):
             for i in reader:
                 if i['role'] == 'customer': 
                     print(i['username'])
-                    
-    def BlackList(self):
+
+    def BlackList(*args):
         lst=[]
         with open('user.csv','r') as file:
             reader = csv.DictReader(file)
             for i in reader:
-                if self in i['username'] and i['role'] == 'customer':
-                    lst.append(f"{i['username']}")
-                    return lst
+                for j in args:
+                    if j in i['username'] and i['role'] == 'customer':
+                        lst.append(f"{i['username']}")
+        print(lst)                
+        return lst
 
 
-# a = Manager("customer","09126853858","091910aaa")
+# a = customer("customer","09126853858","091910aaa")
 # a.saving()
 
-# b= Manager.BlackList("09191049849")
+# b= Manager.BlackList("09191049849","09191049849","09191049849")
 # a = Manager("manager","09191049849","091910aaa","ofogh","2018-2020",b)
 # a.saving()
