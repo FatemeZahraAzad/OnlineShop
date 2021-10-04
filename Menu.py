@@ -1,13 +1,13 @@
-import os
-import csv
-import User
-import list_of_stuff
 import logging
+import os
+from datetime import time
+import User
 import buy
-import search
-from hashlib import sha256
+import list_of_stuff
+from search import Search
 
-logging.basicConfig(level=logging.INFO,filename='logs.log',filemode='a',format=" %(asctime)s — %(name)s — %(levelname)s — %(message)s \n")
+logging.basicConfig(level=logging.INFO, filename='logs.log', filemode='a',
+                    format=" %(asctime)s — %(name)s — %(levelname)s — %(message)s \n")
 
 def menu():
     option = 0
@@ -23,17 +23,20 @@ def menu():
                     if Role == "manager":
                         logging.info(f"New {Role} is regester")
                         username = input("Enter phone number: ")
-                        password = input("Enter Password\n(Your password must be above 8 characters and at least one letter):")
+                        password = input(
+                            "Enter Password\n(Your password must be above 8 characters and at least one letter):")
                         store_name = input("Enter store's name: ")
-                        login_time = input("Enter Your Log in time:")
-                        Exit_time = input("Enter Your exit time:")
-                        abject2 = User.Manager(Role,username,password,store_name,login_time,Exit_time)
+                        login_time = str(time(int(input("Enter Your Log in hour:"))))
+                        Exit_time = str(time(int(input("Enter Your exit hour:"))))
+                        abject2 = User.Manager(Role, username, password, store_name, login_time, Exit_time)
                         User.Manager.saving(abject2)
                         logging.info(f"{store_name} is regester")
                         os.system('cls')
-                        Registration_of_goods = input("Do you want to register your goods ?!\nEnter yes or no :").lower().strip()
+                        Registration_of_goods = input(
+                            "Do you want to register your goods ?!\nEnter yes or no :").lower().strip()
                         if Registration_of_goods == "yes":
-                            print(f"welcome sir\nThank you for choosing our application\nPlease enter the requested information")
+                            print(
+                                f"welcome sir\nThank you for choosing our application\nPlease enter the requested information")
                             Input = ''
                             while Input != 'no':
                                 store = input("store name >> ").lower()
@@ -43,19 +46,28 @@ def menu():
                                 product_name = input("Product name of goods >> ").lower()
                                 number_of_inventory = input("Number of inventory >> ")
                                 expiration_date = input("Expiration date of goods >> ")
-                                abject3 = list_of_stuff.products(store,barcode,price,brand,product_name,number_of_inventory,expiration_date)
+                                abject3 = list_of_stuff.products(store, barcode, price, brand, product_name,
+                                                                 number_of_inventory, expiration_date)
                                 list_of_stuff.products.saving(abject3)
                                 logging.info(f"{product_name} is regester")
                                 os.system('cls')
-                                Input = input("Do you still want to register a product?\nIf you don't want to enter the word ""no"" : ").lower()
+                                Input = input(
+                                    "Do you still want to register a product?\nIf you don't want to enter the word ""no"" : ").lower()
                             os.system('cls')
+
+                            # show meno # TODO
+
                     elif Role == "customer":
                         logging.info(f"New {Role} is regester")
                         username = input("Enter phone number: ")
-                        password = input("Enter Password\n(Your password must be above 8 characters and at least one letter):")
-                        abject4=User.customer(Role,username,password)
+                        password = input(
+                            "Enter Password\n(Your password must be above 8 characters and at least one letter):")
+                        abject4 = User.customer(Role, username, password)
                         User.customer.saving(abject4)
                         os.system('cls')
+
+                        # show meno  # TODO
+
                     else:
                         logging.error(ValueError)
                         raise ValueError
@@ -64,99 +76,128 @@ def menu():
                     logging.error("Failed to register")
                     continue
             elif option == 2:
-                try:
-                    Role = input("Choose your role (manager/customer): ").lower()
-                    if Role == "manager":
-                        username = input("Enter your phone number: ")
-                        password = input("Enter your Password: ")
-                        with open('user.csv','r') as file:
-                            filereader = csv.DictReader(file, delimiter=',')
-                            for i in filereader:
-                                if username in i['username'] and sha256(str(password).encode()).hexdigest() in i['password']: # username in file2 and password in file2:
-                                    if i['role'] == 'manager':
-                                        logging.info(f"{username} is regester")
-                                        choice = 0
-                                        while choice != 6:
-                                            print("1-View store inventory")
-                                            print("2-View customer purchase invoice")
-                                            print("3-Invoice Search ")
-                                            print("4-View the profile list of all customers ")
-                                            print("5-Customer block ")
-                                            print("6-Exit ")
-                                            choice = int(input("choose an number: "))
-                                            if choice == 1:
-                                                NameStore = input("Enter your store name :").lower()
-                                                list_of_stuff.products.show_products(NameStore)
-                                            if choice == 2:
-                                                Name_Store = input("Enter your store name :").lower()
-                                                list_of_stuff.products.show_buy(Name_Store)
-                                            if choice == 3:
-                                                type = input("Search (for example 09123456789 2021-1-1):").lower()
-                                                search.Search.search_manager(type)
-                                            if choice == 4:
-                                                Input2 = "customer"
-                                                User.Manager.show(Input2)
-                                            if choice == 5:
-                                                end = ''
-                                                while end != 'no':
-                                                    user = input("enter her/his number :")
-                                                    User.Manager.BlackList(user)
-                                                    end = input('Would you like to add someone again ?! (yes/no) : ')
-                                            if choice == 6:
-                                                print ('Exiting\n')
+                username = input("Enter your phone number: ")
+                password = input("Enter your Password: ")
+                Copyname = username
+                name = username
+                Copy_name = username
+                copy_name = username
+                copy_password = password
+                abject1 = User.Person.LogIn(username, password)
+                copy_roll = abject1
+                if abject1 == "manager":
+                    choice = 0
+                    while choice != 7:
+                        print("1-Registration of new goods")
+                        print("2-View store inventory")
+                        print("3-View customer purchase invoice")
+                        print("4-Invoice Search ")
+                        print("5-View the profile list of all customers ")
+                        print("6-Customer block ")
+                        print("7-Exit ")
+                        choice = int(input("choose an number: "))
+                        if choice == 1:
+                            Input = ''
+                            while Input != 'no':
+                                store = input("store name >> ").lower()
+                                barcode = input("Barcode of goods >> ")
+                                price = input("Price of gooods >> ")
+                                brand = input("Brand of goods >> ").lower()
+                                product_name = input("Product name of goods >> ").lower()
+                                number_of_inventory = input("Number of inventory >> ")
+                                expiration_date = input("Expiration date of goods >> ")
+                                abject3 = list_of_stuff.products(store, barcode, price, brand, product_name,
+                                                                 number_of_inventory, expiration_date)
+                                list_of_stuff.products.saving(abject3)
+                                logging.info(f"{product_name} is regester")
+                                os.system('cls')
+                                Input = input(
+                                    "Do you still want to register a product?\nIf you don't want to enter the word ""no"" : ").lower()
+                        if choice == 2:
+                            store = input("Enter store name")
+                            User.Manager.show_products(store)
+                            # print()
+                        if choice == 3:
+                            store = input("Enter store name")
+                            User.Manager.show_buy(store)
+                        if choice == 4:
+                            invoice = input("Search (for example 09123456789 2021-1-1):")
+                            Search.search_manager(invoice)
+                        if choice == 5:
+                            User.Manager.show()
+                        if choice == 6:
+                            thing4 = User.Manager(copy_roll,copy_name,copy_password)
+                            block = input("Enter his/her number:")
+                            thing4.BlackList(block)
+                if abject1 == "customer":
+                    User.customer.show_buy(name)
+                    name2 = username
+                    choice2 = 0
+                    while choice2 != 3:
+                        print("1-Display store names")
+                        print("2-Search the store name")
+                        choice2 = int(input("choose an number: "))
+                        if choice2 == 1:
+                            User.customer.show_storeName()
+                            StoreName = input("Select one of the stores and enter its name : ")
+                            CopyStore = StoreName
+                            copynumber = username
+                            result = User.customer.checkIn(copynumber,CopyStore)
+                            if result != False:
+                                copy_store = StoreName
+                                Copy_store = StoreName
+                                ####################################
+                                object4 = buy.Buy(name2, StoreName)
+                                choice3 = 0
+                                while choice3 !=2:
+                                    print("1-Display goods")
+                                    print("2-Search the goods")
+                                    choice3 = int(input("choose an number: "))
+                                    if choice3 == 1:
+                                        User.customer.show_goods(copy_store)
+                                        choice_product = input("Select a good : ")
+                                        object5 = object4.selection_of_goods(choice_product)
+                                        Confirmation = input("Are you finalizing your purchase ?!\n(yes or no) >> ")
+                                        if Confirmation == "no":
+                                            Exit = input("Do you want to get out ?!\n(yes/no): ")
+                                            if Exit == "yes":
                                                 exit(0)
-                                    else:
-                                        print("you are not manager")
-                                        logging.error("Failed log in")
-                    elif Role == 'customer':
-                        username = input("Enter your phone number: ")
-                        password = input("Enter your Password: ")
-                        with open('user.csv','r') as file:
-                            filereader = csv.DictReader(file, delimiter=',')
-                            for i in filereader:
-                                if username in i['username'] and password in i['password']:
-                                    logging.info(f"{username} is regester")
-                                    choice2 = 0
-                                    while choice2 != 9:
-                                        print("1-View your previous invoices") #مشاهده فاکتور قبلی
-                                        print("2-Show list of stores") #نمایش لیستی از فروشگاه ها
-                                        print("3-Store Search") #جست و جوی فروشگاه
-                                        print("4-Select a store") #انتخاب فروشگاه
-                                        print("5-View Product List") #مشاهده لیست کالا ها
-                                        print("6-Selection of goods") #انتخاب اجناس
-                                        print("7-View pre-invoice") #مشاهده پیش فاکتور
-                                        print("8-Confirm purchase or edit it") #تایید خرید یا ویرایش ان
-                                        print("9-Exit")
-                                        choice2 = int(input("choose an number: "))
-                                        if choice2 == 1:
-                                            pass
-                                        if choice2 == 2:
-                                            pass
-                                        if choice2 == 3:
-                                            pass
-                                        if choice2 == 4:
-                                            pass
-                                        if choice2 == 5:
-                                            View_of_good = input("Enter your store name :")
-                                            shop = buy.Buy.View_Product_List(View_of_good)
-                                            select_of_good = input("Do you want to select a goods ?!\nEnter yes or no :").lower()
-                                            if select_of_good == 'yes':
-                                                name = ''
-                                                while name != 'done':
-                                                    name = input('enter your choise and nomber of its\nfor example ->  candy,5 \notherwise enter done,done ').lower().strip().split(',')
-                                                    # nop = buy.Buy.selection_of_good(name) #!!!!!!! این قسمت برای فاز دوم میباشد
-                                                    factore=buy.Buy(username,name,shop)
-                                            buy.Buy.saving(factore)
-                                        if choice2 == 7:
-                                            pass
-                                        if choice2 == 8:
-                                            pass
-                except Exception as e:
-                    logging.error(ValueError)
-                    print(e)
-                    continue
+                                            if Exit == "no":
+                                                exit(1)
+                                        if Confirmation == "yes":
+                                            object4.saving()
+                                        else:
+                                            print(161)
+                                    if choice3 == 2:
+                                        instance = buy.Buy(Copy_name,Copy_store)
+                                        end = ''
+                                        while end != "no":
+                                            search = input("search is ready: ")
+                                            instance.search_product(search)
+                                            end = input("Do you want to search again ?! ").lower()
+                                        Confirmation2 = input("Are you finalizing your purchase ?!\n(yes or no) >> ")
+                                        if Confirmation2 == "no":
+                                            Exit2 = input("Do you want to get out ?!\n(yes/no): ")
+                                            if Exit2 == "yes":
+                                                exit(0)
+                                            if Exit2 == "no":
+                                                exit(1)
+                                        if Confirmation == "yes":
+                                            instance.saving()
+                        if choice2 == 2:
+                            search1 = input("search is ready: ")
+                            search_store = Search.search_customer(search1)
+                            copystore = search_store
+                            User.customer.show_goods(search_store)
+                            object6 = buy.Buy(name2,copystore)
+                            object7 = ''
+                            while object7 != 'no':
+                                shop = object6.selection_of_goods(input("what do you want?! :"))
+                                object7 = input("do you ant more?! ").lower()
+                            object6.saving()                            
+                else:
+                    print("Your name was not found. Please register first")
+                    logging.error("Failed log in")
         except Exception as e:
             print(e)
-            logging.error(ValueError)
-
 menu()

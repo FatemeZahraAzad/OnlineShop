@@ -1,5 +1,9 @@
 store,barcode,price,brand,product_name,number_of_inventory,expiration_date
-ok,0123456789,10000,mihan,icecream,50,2023-06-12
+ok,0123456789,10000,mihan,icecream,49,2023-06-12
 ofogh,456398712,60000,kavir,shoes,5,2040-06-09
-ofogh,77896354210,6000,yumi,chokolate,15,2022-01-27
+ofogh,77896354210,6000,yumi,chokolate,70,2022-01-27
 seven,5656498344,15000,noora,notebook,17,2060-10-10
+ofogh,9898563214,2000,qt,candy,22,2022-02-12
+saraye_iran,4785961230,10000000,pakshoma,washing machine,18,2040-06-07
+charmeMashhad,1425369870,640000,Maryam,Bag,50,2050-12-06
+charmemashhad,1023456987,800000,maryam,gloves,40,2060-04-05

@@ -1,10 +1,10 @@
-customerName,nameNumber_of_product,name_of_store,date
-
-09306474007,"['chokolate : 3', 'candy : 3', 'shoes : 3']",ok,2021-09-25
-
-09306474007,"['chokolate : 3', 'candy : 3', 'shoes : 3']",ok,2021-09-25
-
-09228607343,"['chokolate : 3', 'candy : 3', 'shoes : 3']",seven,2021-09-25
-
-09123456789,"['chokolate : 3', 'candy : 3', 'shoes : 3']",ofogh,2021-09-25
-
+customerName,name_of_store,product_list,date
+09191049849,Ofogh,['chokolate : 1'],2021-10-03
+09191049849,Ofogh,"['chokolate : 1', 'candy : 2']",2021-10-03
+09191049849,Ofogh,"['chokolate : 1', 'candy : 1']",2021-10-03
+09191049849,Ofogh,"['chokolate : 1', 'candy : 1']",2021-10-03
+09191049849,Ofogh,['candy : 1'],2021-10-04
+09306474007,ofogh,['candy : 1'],2021-10-04
+09306474007,ok,['icecream : 1'],2021-10-04
+09123456789,seven,['notebook : 1'],2021-10-04
+09228607343,seven,"['notebook : 1', 'notebook : 1']",2021-10-04
